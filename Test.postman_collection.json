@@ -100,7 +100,7 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.environment.set(\"firstName\", \"Jamie\");\r",
+							"pm.environment.set(\"firstName\", \"Jack\");\r",
 							"\r",
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",

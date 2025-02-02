@@ -1,0 +1,198 @@
+{
+	"info": {
+		"_postman_id": "7fa1b2c2-834a-4ded-81ff-5b54d782b55f",
+		"name": "Test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "14536449"
+	},
+	"item": [
+		{
+			"name": "Main Copy",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.globals.set('firstName', 'Jack');\r",
+							"console.log(pm.globals.get(\"firstName\"));\r",
+							"console.log(pm.variables.get(\"firstName\"));\r",
+							"console.log(pm.variables.get(\"orderId\"));\r",
+							"pm.globals.unset('firstName');\r",
+							"\r",
+							"const persons = [\r",
+							"   {\r",
+							"       name: 'Jamie',\r",
+							"       email: 'jamie@example.com'\r",
+							"   },\r",
+							"   {\r",
+							"       name: 'Jake',\r",
+							"       email: 'jake@example.com'\r",
+							"   },\r",
+							"   {\r",
+							"       name: 'Mary',\r",
+							"       email: 'mary@example.com'\r",
+							"   }\r",
+							"];\r",
+							"\r",
+							"const emails = persons.map(person => person.email);\r",
+							"console.log(emails);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"numbers = [1, 5, 9, 12, 3];\r",
+							"\r",
+							"const persons = [\r",
+							"    {\r",
+							"        name: \"Jamie\",\r",
+							"        email: \"jamie@mail.com\",\r",
+							"    },\r",
+							"    {\r",
+							"        name: \"Jack\",\r",
+							"        email: \"jack@mail.com\",\r",
+							"    },\r",
+							"    {\r",
+							"        name: \"Bob\",\r",
+							"        email: \"bob@mail.com\",\r",
+							"    },\r",
+							"];\r",
+							"\r",
+							"const foundPerson = persons.find((person) => person.name === \"Jmie\");\r",
+							"if(foundPerson){\r",
+							"    console.log(foundPerson.email);\r",
+							"    } else {\r",
+							"        console.log(\"Person not found\");\r",
+							"    }\r",
+							"\r",
+							"\r",
+							"    "
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}",
+					"host": [
+						"{{baseURL}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get_status Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"firstName\", \"Jamie\");\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Answer verification\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.status).to.eql(\"UP\");\r",
+							"});\r",
+							"\r",
+							"pm.test('status is UP', function () {\r",
+							"     var responseJSON = pm.response.json();\r",
+							"     pm.expect(responseJSON).to.be.an('object');\r",
+							"     pm.expect(responseJSON.status).to.equal('UP');\r",
+							"});\r",
+							"\r",
+							"console.log(pm.variables.get(\"baseURL\"));\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"console.clear();\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://simple-grocery-store-api.glitch.me/status",
+					"protocol": "https",
+					"host": [
+						"simple-grocery-store-api",
+						"glitch",
+						"me"
+					],
+					"path": [
+						"status"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get_all_coffee Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://simple-grocery-store-api.glitch.me/products?category=coffee",
+					"protocol": "https",
+					"host": [
+						"simple-grocery-store-api",
+						"glitch",
+						"me"
+					],
+					"path": [
+						"products"
+					],
+					"query": [
+						{
+							"key": "category",
+							"value": "coffee"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
